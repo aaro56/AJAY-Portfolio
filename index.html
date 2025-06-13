@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <style>
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+          font-family: 'Arial', sans-serif;
+          scroll-behavior: smooth;
+        }
+    
+        body {
+          background: #ebebf1;
+          color: #111010;
+          transition: all 0.3s ease;
+        }qa 
+    
+        body.dark {
+          background: #1a1a2e;
+          color: #e0e0e0;
+        }
+    
+        nav {
+          background: rgba(255, 255, 255, 0.9);
+          padding: 15px 30px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          position: sticky;
+          top: 0;
+          z-index: 100;
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+    
+        body.dark nav {
+          background: rgba(40, 40, 60, 0.9);
+        }
+    
+        nav a {
+          color: inherit;
+          text-decoration: none;
+          margin: 0 10px;
+          font-weight: bold;
+          transition: color 0.3s;
+        }
+    
+        nav a:hover {
+          color: #ff6b6b;
+        }
+    
+        .dark-toggle {
+          background: linear-gradient(135deg, #6b48ff, #00ddeb);
+          color: rgb(255, 255, 255);
+          padding: 8px 15px;
+          border-radius: 20px;
+          border: none;
+          cursor: pointer;
+          font-size: 14px;
+          transition: transform 0.3s;
+        }
+    
+        .dark-toggle:hover {
+          transform: scale(1.05);
+        }
+    
+        header {
+          background: linear-gradient(135deg, #6b48ff, #00ddeb);
+          color: white;
+          padding: 60px 30px;
+          text-align: center;
+          clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
+        }
+    
+        header h1 {
+          font-size: 3em;
+        }
+    
+        header p {
+          font-size: 1.2em;
+          margin-top: 10px;
+        }
+    
+        section {
+          padding: 40px 30px;
+          max-width: 1000px;
+          margin: auto;
+        }
+    
+        h2 {
+          font-size: 2em;
+          margin-bottom: 20px;
+          color: #6b48ff;
+          text-align: center;
+        }
+    
+        .project-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+          gap: 20px;
+        }
+    
+        .project-card {
+          background: rgba(255, 255, 255, 0.8);
+          border-radius: 10px;
+          padding: 20px;
+          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+          transition: transform 0.3s, box-shadow 0.3s;
+          position: relative;
+          overflow: hidden;
+        }
+    
+        body.dark .project-card {
+          background: rgba(40, 40, 60, 0.8);
+        }
+    
+        .project-card:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+    
+        .project-card h3 {
+          font-size: 1.5em;
+          margin-bottom: 10px;
+        }
+    
+        .project-card p {
+          font-size: 1em;
+          margin-bottom: 15px;
+          line-height: 1.4;
+        }
+    
+        .project-card a {
+          display: inline-block;
+          padding: 8px 15px;
+          background: linear-gradient(135deg, #6b48ff, #00ddeb);
+          color: white;
+          text-decoration: none;
+          border-radius: 5px;
+          font-size: 0.9em;
+          transition: transform 0.3s;
+        }
+    
+        .project-card a:hover {
+          transform: scale(1.05);
+        }
+    
+        .project-card::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 5px;
+          background: linear-gradient(135deg, #6b48ff, #00ddeb);
+          transition: height 0.3s;
+        }
+    
+        .project-card:hover::before {
+          height: 10px;
+        }
+    
+        .about {
+          display: flex;
+          align-items: center;
+          gap: 30px;
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+    
+        .about img {
+          max-width: 150px;
+          border-radius: 75%;
+          border: 3px solid #6b48ff;
+          transition: transform 0.3s;
+        }
+    
+        .about img:hover {
+          transform: scale(1.1);
+        }
+    
+        .about p {
+          max-width: 500px;
+          line-height: 1.5;
+        }
+    
+        .contact form {
+          max-width: 500px;
+          margin: auto;
+          background: rgba(255, 255, 255, 0.8);
+          padding: 20px;
+          border-radius: 10px;
+          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+    
+        body.dark .contact form {
+          background: rgba(40, 40, 60, 0.8);
+        }
+    
+        .contact input, .contact textarea {
+          width: 100%;
+          padding: 10px;
+          margin: 10px 0;
+          border-radius: 5px;
+          border: 1px solid #ccc;
+          background: rgba(255, 255, 255, 0.5);
+          color: inherit;
+          font-size: 1em;
+        }
+    
+        body.dark .contact input, body.dark .contact textarea {
+          border: 1px solid #666;
+          background: rgba(40, 40, 60, 0.5);
+        }
+    
+        .contact button {
+          padding: 10px 20px;
+          background: linear-gradient(135deg, #6b48ff, #00ddeb);
+          color: white;
+          border: none;
+          border-radius: 20px;
+          cursor: pointer;
+          font-size: 1em;
+          transition: transform 0.3s;
+        }
+    
+        .contact button:hover {
+          transform: scale(1.05);
+        }
+    
+        .contact button:disabled {
+          opacity: 0.5;
+          cursor: not-allowed;
+        }
+    
+        @media (max-width: 768px) {
+          nav {
+            flex-direction: column;
+            gap: 10px;
+          }
+          header h1 {
+            font-size: 2em;
+          }
+          .about {
+            flex-direction: column;
+            text-align: center;
+          }
+        }
+      </style>
+</head>
+<section>
+  <div><a href="#">My Portfolio</a></div>
+  <nav>
+    <a href="#">About Me</a> 
+    <a href="#">Projects</a> 
+    <a href="#">Contact</a>
+</nav> 
+    <header>
+        <h1> Ajay Joseph</h1>
+        <p>Sales & Marketing | KDP</p>
+    </header>
+<SECTION class="about" id="about">
+    <img src="/images/newprofile.jpg" alt="Portfolio Picture">
+    <div>
+        <h2>About Me</h2>
+        <p>I'am a sales marketing manager support at kerala digital park LLP</p>
+    </div>
+</SECTION>
+<section class="projects" id="projects"></section>
+<h2>Projects</h2>
+<div class="projct-grid">
+    <div class="project-card">
+        <h3>Shop2Host</h3>
+        <p>An E-Commerce Platform Built with Node.js and Angular for Multiple Stores</p>
+        <a href="#" target="_blank">View Project</a> 
+    </div>
+    <div class="project-card">
+        <h3> Medical Website</h3>
+        <p> A Hospital Website made with EJS and Node.js, with modern design</p>
+        <a href="#" target="_blank">View Project</a>
+    </div>
+</div>
+</section>
+<section class="contact" id="contact">
+<h2>Contact Me</h2>
+<form id="contactForm">
+    <input type="text" id="name" placeholder="Your Name" required>
+    <input type="email" id="email" placeholder="Your e-mail" required>
+    <textarea id="message" placeholder="Your Message" rows="4" required></textarea>
+    <button type="submit" id="submitBtn">Send Message</button>
+</form>
+
+</section>
+<script>
+    // Dark Mode Toggle
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark');
+    }
+
+    // Form Handling
+    const form = document.getElementById('contactForm');
+    const submitBtn = document.getElementById('submitBtn');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+
+      if (name.length < 2) {
+        alert('Name must be at least 2 characters.');
+        return;
+      }
+
+      if (!email.includes('@') || !email.includes('.')) {
+        alert('Please enter a valid email.');
+        return;
+      }
+
+      if (message.length < 5) {
+        alert('Message must be at least 5 characters.');
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending...';
+
+      setTimeout(() => {
+        alert('Message sent!');
+        form.reset();
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Send Message';
+      }, 1000);
+    });
+  </script>
+</body>
+</html>
