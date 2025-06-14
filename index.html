@@ -7,6 +7,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- NEW: Link to Font Awesome Icon Library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         :root {
           --bg-color: #0d0d1a; 
@@ -33,13 +35,7 @@
         }
 
         #starry-background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            overflow: hidden;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; overflow: hidden;
         }
 
         @keyframes anim-stars {
@@ -48,29 +44,23 @@
         }
 
         #stars1, #stars2, #stars3 {
-            position: absolute;
-            border-radius: 50%;
-            background: transparent;
-            animation: anim-stars linear infinite;
+            position: absolute; border-radius: 50%; background: transparent; animation: anim-stars linear infinite;
         }
         
         #stars1 {
-            width: 1px;
-            height: 1px;
+            width: 1px; height: 1px;
             box-shadow: 50vw 93vh #FFF, 7vw 5vh #FFF, 2vw 29vh #FFF, 54vw 44vh #FFF, 9vw 7vh #FFF, 62vw 3vh #FFF, 78vw 12vh #FFF, 65vw 80vh #FFF, 12vw 82vh #FFF, 95vw 2vh #FFF, 4vw 70vh #FFF, 42vw 87vh #FFF, 67vw 2vh #FFF, 62vw 83vh #FFF, 23vw 96vh #FFF, 45vw 23vh #FFF, 1vw 98vh #FFF, 75vw 63vh #FFF, 40vw 73vh #FFF, 4vw 9vh #FFF, 19vw 4vh #FFF, 79vw 6vh #FFF, 91vw 48vh #FFF, 46vw 5vh #FFF, 24vw 14vh #FFF, 5vw 8vh #FFF, 88vw 33vh #FFF, 81vw 9vh #FFF, 54vw 2vh #FFF, 9vw 22vh #FFF, 43vw 94vh #FFF, 99vw 72vh #FFF, 72vw 45vh #FFF, 52vw 4vh #FFF, 68vw 91vh #FFF, 34vw 1vh #FFF, 70vw 68vh #FFF;
             animation-duration: 150s;
         }
         
         #stars2 {
-            width: 2px;
-            height: 2px;
+            width: 2px; height: 2px;
             box-shadow: 18vw 78vh #FFF, 79vw 6vh #FFF, 41vw 93vh #FFF, 56vw 56vh #FFF, 14vw 46vh #FFF, 60vw 31vh #FFF, 85vw 2vh #FFF, 40vw 23vh #FFF, 2vw 50vh #FFF, 82vw 36vh #FFF, 61vw 19vh #FFF, 93vw 92vh #FFF, 20vw 13vh #FFF, 64vw 94vh #FFF, 93vw 33vh #FFF, 16vw 81vh #FFF, 38vw 81vh #FFF, 8vw 27vh #FFF, 74vw 89vh #FFF, 42vw 81vh #FFF, 1vw 22vh #FFF, 73vw 15vh #FFF, 95vw 98vh #FFF, 53vw 3vh #FFF, 2vw 8vh #FFF, 4vw 24vh #FFF, 61vw 73vh #FFF, 80vw 55vh #FFF, 65vw 17vh #FFF, 2vw 92vh #FFF;
             animation-duration: 100s;
         }
 
         #stars3 {
-            width: 3px;
-            height: 3px;
+            width: 3px; height: 3px;
             box-shadow: 29vw 63vh #FFF, 94vw 12vh #FFF, 51vw 55vh #FFF, 2vw 38vh #FFF, 67vw 27vh #FFF, 91vw 82vh #FFF, 49vw 16vh #FFF, 12vw 10vh #FFF, 43vw 1vh #FFF, 5vw 71vh #FFF, 53vw 94vh #FFF, 70vw 80vh #FFF, 14vw 89vh #FFF, 29vw 19vh #FFF, 82vw 85vh #FFF;
             animation-duration: 50s;
         }
@@ -136,66 +126,32 @@
         .contact button:hover { transform: scale(1.05); box-shadow: 0 5px 15px rgba(37, 117, 252, 0.4); }
         .contact button:disabled { opacity: 0.6; cursor: not-allowed; transform: scale(1); box-shadow: none; }
     
-        /* --- START: NEW WHATSAPP BUTTON STYLES --- */
         .contact-divider {
-            text-align: center;
-            margin: 30px 0 20px;
-            font-weight: 300;
-            color: rgba(224, 224, 224, 0.7);
+            text-align: center; margin: 30px 0 20px; font-weight: 300; color: rgba(224, 224, 224, 0.7);
         }
 
         .whatsapp-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            padding: 12px 30px;
-            background-color: var(--whatsapp-green);
-            color: white;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1em;
-            transition: transform 0.3s, box-shadow 0.3s;
+            display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 12px 30px; background-color: var(--whatsapp-green); color: white !important; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 1em; transition: transform 0.3s, box-shadow 0.3s;
         }
 
-        .whatsapp-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
-        }
+        .whatsapp-btn:hover { transform: scale(1.05); box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4); }
 
-        .whatsapp-btn svg {
-            width: 24px;
-            height: 24px;
-            fill: white;
+        /* UPDATED: Styling the Font Awesome icon */
+        .whatsapp-btn i {
+            font-size: 1.5rem; /* 24px */
         }
 
         .whatsapp-fab {
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            width: 60px;
-            height: 60px;
-            background-color: var(--whatsapp-green);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            z-index: 101;
-            transition: transform 0.3s ease;
+            position: fixed; bottom: 25px; right: 25px; width: 60px; height: 60px; background-color: var(--whatsapp-green); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 101; transition: transform 0.3s ease;
         }
 
-        .whatsapp-fab:hover {
-            transform: scale(1.1);
+        .whatsapp-fab:hover { transform: scale(1.1); }
+        
+        /* UPDATED: Styling the Font Awesome icon */
+        .whatsapp-fab i {
+            color: white;
+            font-size: 2rem; /* 32px */
         }
-
-        .whatsapp-fab svg {
-            width: 32px;
-            height: 32px;
-            fill: white;
-        }
-        /* --- END: NEW WHATSAPP BUTTON STYLES --- */
         
         @media (max-width: 768px) {
           nav { flex-direction: column; gap: 15px; padding: 15px; }
@@ -204,7 +160,7 @@
           .about { flex-direction: column; text-align: center; }
           .about img { max-width: 150px; }
           .whatsapp-fab { width: 50px; height: 50px; right: 15px; bottom: 15px; }
-          .whatsapp-fab svg { width: 28px; height: 28px; }
+          .whatsapp-fab i { font-size: 1.75rem; } /* 28px */
         }
       </style>
 </head>
@@ -215,9 +171,9 @@
         <div id="stars3"></div>
     </div>
 
-    <!-- NEW: Floating WhatsApp Button. REMEMBER TO CHANGE THE PHONE NUMBER! -->
+    <!-- REPLACED SVG WITH FONT AWESOME ICON. REMEMBER TO CHANGE THE PHONE NUMBER! -->
     <a href="https://wa.me/917510824526?text=Hello%20Ajay,%20I%20saw%20your%20portfolio!" class="whatsapp-fab" target="_blank" title="Chat on WhatsApp">
-        <svg viewBox="0 0 32 32"><path d=" M19.11 17.205c-.372 0-1.088 1.39-1.088 1.39s-.239-.008-.59-.15c-1.42-.586-2.75-1.762-3.96-3.21s-1.762-2.75-3.21-3.96c-.14-.35-.15-.59-.15-.59s1.39-1.088 1.39-1.088c0-.372.372-1.088 0-1.088s-1.088 0-1.088 0l-1.088 1.088s-.625.625-1.088 1.088c-.463.463-1.088.463-1.088.463s-1.088-.239-1.088-1.088c0-.85 0-1.088 0-1.088s.463-3.72.463-3.72c.24-1.305 1.088-2.31 2.31-2.55s1.088-.239 1.088-.239l1.088.239s1.088.239 1.088.463c.24.24.24.625 0 1.088s-.463.463-.463.463l-.463.463s-.239.239 0 .463c.24.24 1.088 1.088 1.088 1.088s2.31 2.31 3.72 3.72c.24.24 1.088 1.088 1.088 1.088s.463 0 .463-.463l.463-.463s.463-.239.463-.239c.24-.24.625 0 1.088 0s1.088.463 1.088.463l1.088 1.088s.625.625 1.088 1.088c.463.463.463 1.088.463 1.088s-.239 1.088-1.088 1.088s-1.088 0-1.088 0z"/></svg>
+        <i class="fa-brands fa-whatsapp"></i>
     </a>
 
     <nav>
@@ -265,7 +221,7 @@
         
         <section class="contact" id="contact">
             <h2 class="reveal">Contact Me</h2>
-            <div class="reveal">
+            <div class="reveal" style="text-align: center;">
                 <form action="https://api.web3forms.com/submit" method="POST">
                     <input type="hidden" name="access_key" value="870e85f2-30c6-455f-9bf6-20c94176fd89">
                     <input type="hidden" name="subject" value="New Contact Form Submission from Your Portfolio">
@@ -278,9 +234,9 @@
 
                 <p class="contact-divider">or</p>
 
-                <!-- NEW: WhatsApp Button in Contact Section. REMEMBER TO CHANGE THE PHONE NUMBER! -->
+                <!-- REPLACED SVG WITH FONT AWESOME ICON. REMEMBER TO CHANGE THE PHONE NUMBER! -->
                 <a href="https://wa.me/917510824526?text=Hello%20Ajay,%20I%20saw%20your%20portfolio!" class="whatsapp-btn" target="_blank">
-                    <svg viewBox="0 0 32 32"><path d=" M19.11 17.205c-.372 0-1.088 1.39-1.088 1.39s-.239-.008-.59-.15c-1.42-.586-2.75-1.762-3.96-3.21s-1.762-2.75-3.21-3.96c-.14-.35-.15-.59-.15-.59s1.39-1.088 1.39-1.088c0-.372.372-1.088 0-1.088s-1.088 0-1.088 0l-1.088 1.088s-.625.625-1.088 1.088c-.463.463-1.088.463-1.088.463s-1.088-.239-1.088-1.088c0-.85 0-1.088 0-1.088s.463-3.72.463-3.72c.24-1.305 1.088-2.31 2.31-2.55s1.088-.239 1.088-.239l1.088.239s1.088.239 1.088.463c.24.24.24.625 0 1.088s-.463.463-.463.463l-.463.463s-.239.239 0 .463c.24.24 1.088 1.088 1.088 1.088s2.31 2.31 3.72 3.72c.24.24 1.088 1.088 1.088 1.088s.463 0 .463-.463l.463-.463s.463-.239.463-.239c.24-.24.625 0 1.088 0s1.088.463 1.088.463l1.088 1.088s.625.625 1.088 1.088c.463.463.463 1.088.463 1.088s-.239 1.088-1.088 1.088s-1.088 0-1.088 0z"/></svg>
+                    <i class="fa-brands fa-whatsapp"></i>
                     <span>Chat on WhatsApp</span>
                 </a>
             </div>
