@@ -4,143 +4,232 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+          /* Light Mode Colors */
+          --bg-color: #f4f7fc;
+          --text-color: #111010;
+          --nav-bg: rgba(255, 255, 255, 0.8);
+          --card-bg: #ffffff;
+          --header-grad-1: #6a11cb;
+          --header-grad-2: #2575fc;
+          --accent-color: #6a11cb;
+
+          /* Dark Mode Colors */
+          --dark-bg-color: #121222;
+          --dark-text-color: #e0e0e0;
+          --dark-nav-bg: rgba(26, 26, 46, 0.8);
+          --dark-card-bg: #1a1a2e;
+          --dark-accent-color: #8a3ffc;
+        }
+
         * {
           margin: 0;
           padding: 0;
           box-sizing: border-box;
-          font-family: 'Arial', sans-serif;
+          font-family: 'Poppins', sans-serif;
           scroll-behavior: smooth;
         }
     
         body {
-          background: #ebebf1;
-          color: #111010;
-          transition: all 0.3s ease;
-        }qa 
+          background: var(--bg-color);
+          color: var(--text-color);
+          transition: background 0.4s ease, color 0.4s ease;
+        }
     
         body.dark {
-          background: #1a1a2e;
-          color: #e0e0e0;
+          background: var(--dark-bg-color);
+          color: var(--dark-text-color);
         }
     
         nav {
-          background: rgba(255, 255, 255, 0.9);
-          padding: 15px 30px;
+          background: var(--nav-bg);
+          backdrop-filter: blur(10px);
+          padding: 15px 5%;
           display: flex;
           justify-content: space-between;
           align-items: center;
           position: sticky;
           top: 0;
           z-index: 100;
-          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+          transition: background 0.4s ease;
         }
     
         body.dark nav {
-          background: rgba(40, 40, 60, 0.9);
+          background: var(--dark-nav-bg);
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-logo a {
+            font-weight: 700;
+            font-size: 1.5em;
         }
     
         nav a {
           color: inherit;
           text-decoration: none;
-          margin: 0 10px;
-          font-weight: bold;
+          margin: 0 15px;
+          font-weight: 600;
+          position: relative;
           transition: color 0.3s;
         }
     
-        nav a:hover {
-          color: #ff6b6b;
+        nav .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--accent-color);
+            transform-origin: bottom right;
+            transition: transform 0.25s ease-out;
+        }
+
+        body.dark nav .nav-links a::after {
+            background-color: var(--dark-accent-color);
+        }
+
+        nav .nav-links a:hover {
+            color: var(--accent-color);
+        }
+        
+        body.dark nav .nav-links a:hover {
+            color: var(--dark-accent-color);
+        }
+
+        nav .nav-links a:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
         }
     
         .dark-toggle {
-          background: linear-gradient(135deg, #6b48ff, #00ddeb);
-          color: rgb(255, 255, 255);
-          padding: 8px 15px;
-          border-radius: 20px;
+          background: none;
           border: none;
           cursor: pointer;
-          font-size: 14px;
-          transition: transform 0.3s;
+          font-size: 24px;
+          transition: transform 0.3s ease;
         }
     
         .dark-toggle:hover {
-          transform: scale(1.05);
+          transform: scale(1.1) rotate(15deg);
         }
     
         header {
-          background: linear-gradient(135deg, #6b48ff, #00ddeb);
+          background: linear-gradient(135deg, var(--header-grad-1), var(--header-grad-2));
           color: white;
-          padding: 60px 30px;
+          padding: 100px 30px 150px;
           text-align: center;
-          clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
+          clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
         }
     
         header h1 {
-          font-size: 3em;
+          font-size: 3.5em;
+          font-weight: 700;
         }
     
         header p {
-          font-size: 1.2em;
+          font-size: 1.3em;
           margin-top: 10px;
+          opacity: 0.9;
         }
     
         section {
-          padding: 40px 30px;
-          max-width: 1000px;
+          padding: 60px 30px;
+          max-width: 1100px;
           margin: auto;
         }
     
         h2 {
-          font-size: 2em;
-          margin-bottom: 20px;
-          color: #6b48ff;
+          font-size: 2.5em;
+          font-weight: 700;
+          margin-bottom: 40px;
+          color: var(--accent-color);
           text-align: center;
+        }
+
+        body.dark h2 {
+            color: var(--dark-accent-color);
+        }
+
+        /* Scroll Reveal Animation */
+        .reveal {
+            position: relative;
+            transform: translateY(50px);
+            opacity: 0;
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            transform: translateY(0);
+            opacity: 1;
         }
     
         .project-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-          gap: 20px;
+          grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+          gap: 30px;
         }
     
         .project-card {
-          background: rgba(255, 255, 255, 0.8);
-          border-radius: 10px;
-          padding: 20px;
-          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+          background: var(--card-bg);
+          border-radius: 15px;
+          padding: 25px;
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
           transition: transform 0.3s, box-shadow 0.3s;
-          position: relative;
-          overflow: hidden;
+          border: 1px solid #e0e0e0;
         }
     
         body.dark .project-card {
-          background: rgba(40, 40, 60, 0.8);
+          background: var(--dark-card-bg);
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+          border: 1px solid #2a2a4a;
         }
     
         .project-card:hover {
-          transform: translateY(-5px);
-          box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+          transform: translateY(-10px);
+          box-shadow: 0 10px 30px rgba(0,0,0,0.1), 0 0 20px var(--header-grad-2);
+        }
+        
+        body.dark .project-card:hover {
+          box-shadow: 0 10px 30px rgba(0,0,0,0.3), 0 0 20px var(--dark-accent-color);
         }
     
         .project-card h3 {
           font-size: 1.5em;
           margin-bottom: 10px;
+          color: var(--accent-color);
+        }
+
+        body.dark .project-card h3 {
+            color: var(--dark-accent-color);
         }
     
         .project-card p {
           font-size: 1em;
-          margin-bottom: 15px;
-          line-height: 1.4;
+          margin-bottom: 20px;
+          line-height: 1.6;
         }
     
         .project-card a {
           display: inline-block;
-          padding: 8px 15px;
-          background: linear-gradient(135deg, #6b48ff, #00ddeb);
+          padding: 10px 20px;
+          background: linear-gradient(135deg, var(--header-grad-1), var(--header-grad-2));
           color: white;
           text-decoration: none;
-          border-radius: 5px;
+          border-radius: 50px;
           font-size: 0.9em;
+          font-weight: 600;
           transition: transform 0.3s;
         }
     
@@ -148,159 +237,201 @@
           transform: scale(1.05);
         }
     
-        .project-card::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 5px;
-          background: linear-gradient(135deg, #6b48ff, #00ddeb);
-          transition: height 0.3s;
-        }
-    
-        .project-card:hover::before {
-          height: 10px;
-        }
-    
         .about {
           display: flex;
           align-items: center;
-          gap: 30px;
+          gap: 50px;
           flex-wrap: wrap;
           justify-content: center;
         }
     
         .about img {
-          max-width: 150px;
-          border-radius: 75%;
-          border: 3px solid #6b48ff;
-          transition: transform 0.3s;
+          max-width: 200px;
+          border-radius: 50%;
+          border: 5px solid var(--accent-color);
+          transition: transform 0.4s ease-in-out, box-shadow 0.4s;
+        }
+        
+        body.dark .about img {
+            border-color: var(--dark-accent-color);
         }
     
         .about img:hover {
-          transform: scale(1.1);
+          transform: scale(1.05) rotate(5deg);
+          box-shadow: 0 0 30px var(--header-grad-2);
         }
     
-        .about p {
-          max-width: 500px;
-          line-height: 1.5;
+        .about .about-text {
+          max-width: 600px;
+          line-height: 1.7;
         }
     
         .contact form {
-          max-width: 500px;
+          max-width: 600px;
           margin: auto;
-          background: rgba(255, 255, 255, 0.8);
-          padding: 20px;
-          border-radius: 10px;
-          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+          background: var(--card-bg);
+          padding: 30px;
+          border-radius: 15px;
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
         }
     
         body.dark .contact form {
-          background: rgba(40, 40, 60, 0.8);
+          background: var(--dark-card-bg);
         }
     
         .contact input, .contact textarea {
           width: 100%;
-          padding: 10px;
-          margin: 10px 0;
-          border-radius: 5px;
+          padding: 15px;
+          margin-bottom: 15px;
+          border-radius: 8px;
           border: 1px solid #ccc;
           background: rgba(255, 255, 255, 0.5);
           color: inherit;
           font-size: 1em;
+          font-family: 'Poppins', sans-serif;
+          transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .contact input:focus, .contact textarea:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 10px rgba(106, 17, 203, 0.2);
         }
     
         body.dark .contact input, body.dark .contact textarea {
-          border: 1px solid #666;
-          background: rgba(40, 40, 60, 0.5);
+          border: 1px solid #444;
+          background: rgba(26, 26, 46, 0.5);
+        }
+
+        body.dark .contact input:focus, body.dark .contact textarea:focus {
+            border-color: var(--dark-accent-color);
+            box-shadow: 0 0 10px rgba(138, 63, 252, 0.3);
         }
     
         .contact button {
-          padding: 10px 20px;
-          background: linear-gradient(135deg, #6b48ff, #00ddeb);
+          padding: 12px 30px;
+          background: linear-gradient(135deg, var(--header-grad-1), var(--header-grad-2));
           color: white;
           border: none;
-          border-radius: 20px;
+          border-radius: 50px;
           cursor: pointer;
           font-size: 1em;
-          transition: transform 0.3s;
+          font-weight: 600;
+          transition: transform 0.3s, box-shadow 0.3s;
         }
     
         .contact button:hover {
           transform: scale(1.05);
+          box-shadow: 0 5px 15px rgba(37, 117, 252, 0.4);
         }
     
         .contact button:disabled {
-          opacity: 0.5;
+          opacity: 0.6;
           cursor: not-allowed;
+          transform: scale(1);
+          box-shadow: none;
         }
     
         @media (max-width: 768px) {
           nav {
             flex-direction: column;
-            gap: 10px;
+            gap: 15px;
+            padding: 15px;
+          }
+          header {
+              padding: 80px 20px 120px;
           }
           header h1 {
-            font-size: 2em;
+            font-size: 2.5em;
           }
           .about {
             flex-direction: column;
             text-align: center;
           }
+          .about img {
+              max-width: 150px;
+          }
         }
       </style>
 </head>
-<section>
-  <div><a href="#">My Portfolio</a></div>
-  <nav>
-    <a href="#">About Me</a> 
-    <a href="#">Projects</a> 
-    <a href="#">Contact</a>
-</nav> 
+<body>
+    <nav>
+        <div class="nav-logo">
+            <a href="#">Ajay Joseph</a>
+        </div>
+        <div class="nav-right">
+            <div class="nav-links">
+                <a href="#about">About Me</a> 
+                <a href="#projects">Projects</a> 
+                <a href="#contact">Contact</a>
+            </div>
+            <button class="dark-toggle" id="dark-mode-toggle" title="Toggle dark mode">🌙</button>
+        </div>
+    </nav> 
+    
     <header>
-        <h1> Ajay Joseph</h1>
-        <p>Sales & Marketing | KDP</p>
+        <h1 class="reveal">Ajay Joseph</h1>
+        <p class="reveal">Sales & Marketing | KDP</p>
     </header>
-<SECTION class="about" id="about">
-    <img src="/images/newprofile.jpg" alt="Portfolio Picture">
-    <div>
-        <h2>About Me</h2>
-        <p>I enjoy building things that work. Whether it’s a script, a short video, or a piece of code, I care about clarity, detail, and making sure it does what it’s supposed to do. I like solving problems, learning as I go, and improving with every project.
 
-This site is a small reflection of what I’ve been exploring — and what I’m still figuring out.</p>
-    </div>
-</SECTION>
-<section class="projects" id="projects"></section>
-<h2>Projects</h2>
-<div class="projct-grid">
-    <div class="project-card">
-        <h3>Shop2Host</h3>
-        <p>An E-Commerce Platform Built with Node.js and Angular for Multiple Stores</p>
-        <a href="#" target="_blank">View Project</a> 
-    </div>
-    <div class="project-card">
-        <h3> Medical Website</h3>
-        <p> A Hospital Website made with EJS and Node.js, with modern design</p>
-        <a href="#" target="_blank">View Project</a>
-    </div>
-</div>
-</section>
-<section class="contact" id="contact">
-<h2>Contact Me</h2>
-<form id="contactForm">
-    <input type="text" id="name" placeholder="Your Name" required>
-    <input type="email" id="email" placeholder="Your e-mail" required>
-    <textarea id="message" placeholder="Your Message" rows="4" required></textarea>
-    <button type="submit" id="submitBtn">Send Message</button>
-</form>
+    <main>
+        <section class="about reveal" id="about">
+            <img src="https://i.ibb.co/6P3T3yL/profile.jpg" alt="Portfolio Picture of Ajay Joseph"> <!-- Placeholder image -->
+            <div class="about-text">
+                <h2>About Me</h2>
+                <p>I enjoy building things that work. Whether it’s a script, a short video, or a piece of code, I care about clarity, detail, and making sure it does what it’s supposed to do. I like solving problems, learning as I go, and improving with every project.</p>
+                <p>This site is a small reflection of what I’ve been exploring — and what I’m still figuring out.</p>
+            </div>
+        </section>
+        
+        <section class="projects" id="projects">
+            <h2 class="reveal">My Projects</h2>
+            <div class="project-grid">
+                <div class="project-card reveal">
+                    <h3>Shop2Host</h3>
+                    <p>An E-Commerce Platform Built with Node.js and Angular for Multiple Stores.</p>
+                    <a href="#" target="_blank">View Project</a> 
+                </div>
+                <div class="project-card reveal">
+                    <h3>Medical Website</h3>
+                    <p>A Hospital Website made with EJS and Node.js, with a modern and clean design.</p>
+                    <a href="#" target="_blank">View Project</a>
+                </div>
+                <div class="project-card reveal">
+                    <h3>Portfolio Template</h3>
+                    <p>A responsive and animated portfolio template just like this one, ready to be customized.</p>
+                    <a href="#" target="_blank">View Project</a>
+                </div>
+            </div>
+        </section>
+        
+        <section class="contact" id="contact">
+            <h2 class="reveal">Contact Me</h2>
+            <form id="contactForm" class="reveal">
+                <input type="text" id="name" placeholder="Your Name" required>
+                <input type="email" id="email" placeholder="Your e-mail" required>
+                <textarea id="message" placeholder="Your Message" rows="5" required></textarea>
+                <button type="submit" id="submitBtn">Send Message</button>
+            </form>
+        </section>
+    </main>
 
-</section>
 <script>
     // Dark Mode Toggle
-    function toggleDarkMode() {
-      document.body.classList.toggle('dark');
-    }
+    const darkModeToggle = document.getElementById('dark-mode-toggle');
+    const body = document.body;
+
+    darkModeToggle.addEventListener('click', () => {
+        body.classList.toggle('dark');
+        // Change icon based on theme
+        if (body.classList.contains('dark')) {
+            darkModeToggle.textContent = '☀️';
+            darkModeToggle.title = 'Toggle light mode';
+        } else {
+            darkModeToggle.textContent = '🌙';
+            darkModeToggle.title = 'Toggle dark mode';
+        }
+    });
 
     // Form Handling
     const form = document.getElementById('contactForm');
@@ -318,7 +449,8 @@ This site is a small reflection of what I’ve been exploring — and what I’m
         return;
       }
 
-      if (!email.includes('@') || !email.includes('.')) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
         alert('Please enter a valid email.');
         return;
       }
@@ -331,13 +463,32 @@ This site is a small reflection of what I’ve been exploring — and what I’m
       submitBtn.disabled = true;
       submitBtn.textContent = 'Sending...';
 
+      // Fake API call
       setTimeout(() => {
-        alert('Message sent!');
+        alert('Message sent successfully!');
         form.reset();
         submitBtn.disabled = false;
         submitBtn.textContent = 'Send Message';
-      }, 1000);
+      }, 1500);
     });
-  </script>
+
+    // Scroll Reveal Animation
+    const revealElements = document.querySelectorAll('.reveal');
+
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+                observer.unobserve(entry.target); // Optional: stop observing once revealed
+            }
+        });
+    }, {
+        threshold: 0.1 // Trigger when 10% of the element is visible
+    });
+
+    revealElements.forEach(el => {
+        revealObserver.observe(el);
+    });
+</script>
 </body>
 </html>
