@@ -407,12 +407,27 @@
         
         <section class="contact" id="contact">
             <h2 class="reveal">Contact Me</h2>
-            <form id="contactForm" class="reveal">
-                <input type="text" id="name" placeholder="Your Name" required>
-                <input type="email" id="email" placeholder="Your e-mail" required>
-                <textarea id="message" placeholder="Your Message" rows="5" required></textarea>
+            
+            <!-- START OF MODIFIED FORM -->
+            <form action="https://api.web3forms.com/submit" method="POST" class="reveal">
+
+                <!-- IMPORTANT: PASTE YOUR WEB3FORMS ACCESS KEY HERE -->
+                <input type="hidden" name="access_key" value="870e85f2-30c6-455f-9bf6-20c94176fd89">
+
+                <!-- This is a nice-to-have: it will be the subject of the email you receive -->
+                <input type="hidden" name="subject" value="New Contact Form Submission from Your Portfolio">
+                <!-- Optional: a checkbox to prevent bots -->
+                <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
+
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your e-mail" required>
+                <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
                 <button type="submit" id="submitBtn">Send Message</button>
+
             </form>
+            <!-- END OF MODIFIED FORM -->
+
         </section>
     </main>
 
@@ -433,45 +448,10 @@
         }
     });
 
-    // Form Handling
-    const form = document.getElementById('contactForm');
-    const submitBtn = document.getElementById('submitBtn');
-
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-      
-      const name = document.getElementById('name').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const message = document.getElementById('message').value.trim();
-
-      if (name.length < 2) {
-        alert('Name must be at least 2 characters.');
-        return;
-      }
-
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(email)) {
-        alert('Please enter a valid email.');
-        return;
-      }
-
-      if (message.length < 5) {
-        alert('Message must be at least 5 characters.');
-        return;
-      }
-
-      submitBtn.disabled = true;
-      submitBtn.textContent = 'Sending...';
-
-      // Fake API call
-      setTimeout(() => {
-        alert('Message sent successfully!');
-        form.reset();
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Send Message';
-      }, 1500);
-    });
-
+    // --- WE HAVE REMOVED THE JAVASCRIPT FOR FORM HANDLING ---
+    // The browser will now handle the form submission and send the data to Web3Forms.
+    // Web3Forms will then show a "success" message to the user and email you the details.
+    
     // Scroll Reveal Animation
     const revealElements = document.querySelectorAll('.reveal');
 
